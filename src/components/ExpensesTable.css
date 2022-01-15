@@ -1,0 +1,25 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin-top: 5%;
+}
+
+thead {
+  background-color: rgba(151, 151, 151, 0.849);
+  border: 1px solid black;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 25px 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: start;
+}
+tbody tr:nth-child(even) {
+  background-color: rgba(151, 151, 151, 0.253);
+}
+.td-hover:hover {
+  background-color: rgba(151, 151, 151, 0.52);
+}
