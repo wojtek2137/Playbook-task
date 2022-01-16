@@ -16,7 +16,7 @@ const ExpenseItem: React.FC<{
       <td>
         {props.euro
           ? expenseCtx.roundNumber(parseFloat(props.amount) / props.euro)
-          : "Please add a positive number of EUR"}
+          : "Please add a positive number of the rate"}
       </td>
       <td className="td-hover" onClick={props.onRemoveExpense}>
         Delete

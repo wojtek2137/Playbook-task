@@ -9,9 +9,9 @@ const MainPage: React.FC = () => {
 
   const totalCurrency = {
     totalEUR: expenseCtx.euro
-      ? expenseCtx.roundNumber(expenseCtx.total / expenseCtx.euro)
-      : "Please add a positive number of",
-    totalPLN: expenseCtx.roundNumber(expenseCtx.total),
+      ? `${expenseCtx.roundNumber(expenseCtx.total / expenseCtx.euro)} EUR`
+      : "Please add a positive number of the rate",
+    totalPLN: `${expenseCtx.roundNumber(expenseCtx.total)} PLN`,
   };
 
   console.log(
@@ -32,7 +32,7 @@ const MainPage: React.FC = () => {
       </div>
       <NewExpense />
       <ExpensesTable />
-      <h4>{`Sum:  ${totalCurrency.totalPLN} PLN    (${totalCurrency.totalEUR} EUR)`}</h4>
+      <h4>{`Sum:  ${totalCurrency.totalPLN}   (${totalCurrency.totalEUR})`}</h4>
       <label htmlFor="rate">Conversion rate:</label>
       <input
         type="number"
@@ -40,7 +40,7 @@ const MainPage: React.FC = () => {
         min="0.001"
         step="0.001"
         onChange={rateChangeHandler}
-        value={expenseCtx.euro}
+        value={expenseCtx.euro.toString()}
       />
     </div>
   );

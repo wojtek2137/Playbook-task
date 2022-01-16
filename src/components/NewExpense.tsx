@@ -74,9 +74,7 @@ const NewExpense: React.FC = () => {
             onBlur={amountBlurHandler}
           />
 
-          <button type="submit" className="form-actions">
-            Add
-          </button>
+          <button type="submit">Add</button>
         </div>
         {enteredInputsInvalid && (
           <p className="error-text">all inputs are required.</p>

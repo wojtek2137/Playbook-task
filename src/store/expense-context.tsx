@@ -47,9 +47,7 @@ const ExpenseContextProvider: React.FC = (props) => {
     } else setTotalValue(0);
   };
   const addEuroRateHandler = (euroRate: string) => {
-    // if (euroRate !== "0")
-    setOwnEuroRate(parseFloat(euroRate));
-    // else return;
+    euroRate !== "" ? setOwnEuroRate(parseFloat(euroRate)) : setOwnEuroRate(0);
   };
   const roundToTwo = (num: number) => {
     let m = Number((Math.abs(num) * 100).toPrecision(15));
