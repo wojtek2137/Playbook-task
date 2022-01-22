@@ -3,7 +3,7 @@ import Expense from "../models/expense";
 import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react-lite";
 
-type ExpensesContextObj = {
+type ExpensesTypeObj = {
   expenses: Expense[];
   conversionRate: number;
   totalPLN: number;
@@ -14,23 +14,12 @@ type ExpensesContextObj = {
   setConversionRate: (rate: string) => void;
 };
 
-export const ExpenseContext = React.createContext<ExpensesContextObj>({
-  expenses: [],
-  conversionRate: 4.382,
-  totalPLN: 0,
-  totalEUR: 0,
-  addExpense: (text: string, amount: string) => {},
-  removeExpense: (id: string) => {},
-  convertToEuro: () => {},
-  setConversionRate: (rate: string) => {},
-});
-
 const roundNumber = (num: number): number => {
   let m = Number((Math.abs(num) * 100).toPrecision(15));
   return (Math.round(m) / 100) * Math.sign(num);
 };
 
-class AppState {
+class Store {
   expenses: Expense[] = [];
   conversionRate: number = 4.382;
 
@@ -78,13 +67,6 @@ class AppState {
   };
 }
 
-const ExpenseContextProvider: React.FC = observer((props) => {
-  const [state] = useState(() => new AppState());
-  return (
-    <ExpenseContext.Provider value={state}>
-      {props.children}
-    </ExpenseContext.Provider>
-  );
-});
+const store = new Store();
 
-export default ExpenseContextProvider;
+export default store;

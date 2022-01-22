@@ -1,6 +1,6 @@
 // import classes from './TodoItem.module.css';
 import { useContext, useEffect } from "react";
-import { ExpenseContext } from "../store/expense-context";
+import store from "../store/store";
 import "./ExpensesTable.css";
 const ExpenseItem: React.FC<{
   title: string;
@@ -8,7 +8,6 @@ const ExpenseItem: React.FC<{
   amountEUR: string;
   onRemoveExpense: () => void;
 }> = (props) => {
-  const expenseCtx = useContext(ExpenseContext);
   return (
     <tr>
       <td>{props.title} </td>

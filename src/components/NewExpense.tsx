@@ -1,11 +1,10 @@
 import React from "react";
-import { useState, useContext } from "react";
-import { ExpenseContext } from "../store/expense-context";
+import { useState } from "react";
+import store from "../store/store";
 import "./NewExpense.css";
 
 const NewExpense: React.FC = () => {
-  const expenseCtx = useContext(ExpenseContext);
-  console.log("expense", expenseCtx);
+  console.log("store", store);
 
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
@@ -35,10 +34,10 @@ const NewExpense: React.FC = () => {
     setIsAmountTouched(true);
 
     if (!enteredInputsValid) return;
-    expenseCtx.convertToEuro();
+    store.convertToEuro();
     //add to store
-    expenseCtx.addExpense(enteredTitle, enteredAmount);
-    expenseCtx.convertToEuro();
+    store.addExpense(enteredTitle, enteredAmount);
+    store.convertToEuro();
     setEnteredTitle("");
     setEnteredAmount("");
     setIsTitleTouched(false);

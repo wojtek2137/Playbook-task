@@ -1,12 +1,9 @@
 import MainPage from "./components/MainPage";
-import ExpenseContextProvider from "./store/expense-context";
+import { observer } from "mobx-react-lite";
+
 import "./App.css";
 function App() {
-  return (
-    <ExpenseContextProvider>
-      <MainPage />
-    </ExpenseContextProvider>
-  );
+  return <MainPage />;
 }
 
-export default App;
+export default observer(App);
