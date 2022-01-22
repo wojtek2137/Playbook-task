@@ -3,9 +3,9 @@ import React, { useContext } from "react";
 import ExpenseItem from "./ExpenseItem";
 import { ExpenseContext } from "../store/expense-context";
 import "./ExpensesTable.css";
-
 const ExpensesTable: React.FC = () => {
   const expenseCtx = useContext(ExpenseContext);
+  expenseCtx.convertToEuro();
   return (
     <table>
       <thead>
@@ -17,17 +17,14 @@ const ExpensesTable: React.FC = () => {
         </tr>
       </thead>
       <tbody>
-        {expenseCtx.items.map((item) => (
+        {expenseCtx.expenses.map((expense) => (
           <ExpenseItem
-            euro={expenseCtx.euro}
-            key={item.id}
-            title={item.title}
-            amount={item.amount}
-            onRemoveExpense={expenseCtx.removeExpense.bind(
-              null,
-              item.id,
-              item.amount
-            )}
+            key={expense.id}
+            title={expense.title}
+            amountPLN={expense.amountPLN}
+            amountEUR={expense.amountEUR}
+            onRemoveExpense={expenseCtx.removeExpense.bind(null, expense.id)}
+            // onConversionRate={expenseCtx.convertToEuro.}
           />
         ))}
       </tbody>

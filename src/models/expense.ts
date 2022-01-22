@@ -1,13 +1,15 @@
 class Expense {
   id: string;
   title: string 
-  amount: string;
+  amountPLN: string;
+  amountEUR: string;
 
   constructor(expenseTitle:string,expenseAmount: string) {
     this.title = expenseTitle;
-    this.amount = expenseAmount;
+    this.amountPLN = expenseAmount;
+    this.amountEUR= "" 
     this.id = new Date().toISOString(); 
-  
+   
   }
 }
 

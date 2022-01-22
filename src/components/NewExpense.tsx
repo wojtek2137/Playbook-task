@@ -35,9 +35,10 @@ const NewExpense: React.FC = () => {
     setIsAmountTouched(true);
 
     if (!enteredInputsValid) return;
-
+    expenseCtx.convertToEuro();
+    //add to store
     expenseCtx.addExpense(enteredTitle, enteredAmount);
-
+    expenseCtx.convertToEuro();
     setEnteredTitle("");
     setEnteredAmount("");
     setIsTitleTouched(false);
