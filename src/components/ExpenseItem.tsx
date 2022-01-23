@@ -21,9 +21,7 @@ const ExpenseItem: React.FC<{
       <td>{props.title} </td>
       <td>{props.amountPLN}</td>
       <td>{props.amountEUR}</td>
-      <TDhover className="td-hover" onClick={props.onRemoveExpense}>
-        Delete
-      </TDhover>
+      <TDhover onClick={props.onRemoveExpense}>Delete</TDhover>
     </tr>
   );
 };
