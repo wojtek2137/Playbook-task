@@ -1,15 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import store from "../store/store";
-import "./NewExpense.css";
+import { observer } from "mobx-react-lite";
+import ExpenseForm from "./ExpenseForm";
 
 const NewExpense: React.FC = () => {
   console.log("store", store);
 
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [isTitleTouched, setIsTitleTouched] = useState(false);
-  const [isAmountTouched, setIsAmountTouched] = useState(false);
+  const [enteredTitle, setEnteredTitle] = useState<string>("");
+  const [enteredAmount, setEnteredAmount] = useState<string>("");
+  const [isTitleTouched, setIsTitleTouched] = useState<boolean>(false);
+  const [isAmountTouched, setIsAmountTouched] = useState<boolean>(false);
 
   const enteredInputsValid: boolean =
     enteredTitle.trim() !== "" && enteredAmount.trim() !== "";
@@ -34,54 +34,31 @@ const NewExpense: React.FC = () => {
     setIsAmountTouched(true);
 
     if (!enteredInputsValid) return;
-    store.convertToEuro();
+
     //add to store
     store.addExpense(enteredTitle, enteredAmount);
+    //convert to euro
     store.convertToEuro();
+
+    //reset validation
     setEnteredTitle("");
     setEnteredAmount("");
     setIsTitleTouched(false);
     setIsAmountTouched(false);
   };
-  const inputsClasses = enteredInputsInvalid
-    ? "form-control invalid"
-    : "form-control";
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className={inputsClasses}>
-        <div className="title-input">
-          {" "}
-          <label htmlFor="title">Title of transaction</label>
-          <input
-            type="text"
-            id="title"
-            minLength={5}
-            value={enteredTitle}
-            onChange={titleChangeHandler}
-            onBlur={titleBlurHandler}
-          />
-        </div>{" "}
-        <div className="amount-input">
-          <label htmlFor="amount">Amount (in PLN)</label>
-          <input
-            type="number"
-            id="amount"
-            min="0.01"
-            step="0.01"
-            value={enteredAmount}
-            onChange={amountChangeHandler}
-            onBlur={amountBlurHandler}
-          />
-
-          <button type="submit">Add</button>
-        </div>
-        {enteredInputsInvalid && (
-          <p className="error-text">all inputs are required.</p>
-        )}
-      </div>
-    </form>
+    <ExpenseForm
+      title={enteredTitle}
+      amount={enteredAmount}
+      inputsInvalid={enteredInputsInvalid}
+      submitForm={submitHandler}
+      titleChange={titleChangeHandler}
+      amountChange={amountChangeHandler}
+      titleBlur={titleBlurHandler}
+      amountBlur={amountBlurHandler}
+    />
   );
 };
 
-export default NewExpense;
+export default observer(NewExpense);

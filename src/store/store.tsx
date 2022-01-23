@@ -1,18 +1,5 @@
-import React, { useState } from "react";
 import Expense from "../models/expense";
 import { makeAutoObservable } from "mobx";
-import { observer } from "mobx-react-lite";
-
-type ExpensesTypeObj = {
-  expenses: Expense[];
-  conversionRate: number;
-  totalPLN: number;
-  totalEUR: number;
-  addExpense: (text: string, amount: string) => void;
-  removeExpense: (id: string) => void;
-  convertToEuro: () => void;
-  setConversionRate: (rate: string) => void;
-};
 
 const roundNumber = (num: number): number => {
   let m = Number((Math.abs(num) * 100).toPrecision(15));

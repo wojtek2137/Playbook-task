@@ -1,7 +1,15 @@
-// import classes from './TodoItem.module.css';
-import { useContext, useEffect } from "react";
-import store from "../store/store";
-import "./ExpensesTable.css";
+import styled from "@emotion/styled";
+
+///stylling
+const TDhover = styled.td`
+  &:hover {
+    outline: none;
+    border-color: #ccc;
+    background-color: #ccc;
+  }
+`;
+
+///component
 const ExpenseItem: React.FC<{
   title: string;
   amountPLN: string;
@@ -13,9 +21,9 @@ const ExpenseItem: React.FC<{
       <td>{props.title} </td>
       <td>{props.amountPLN}</td>
       <td>{props.amountEUR}</td>
-      <td className="td-hover" onClick={props.onRemoveExpense}>
+      <TDhover className="td-hover" onClick={props.onRemoveExpense}>
         Delete
-      </td>
+      </TDhover>
     </tr>
   );
 };
