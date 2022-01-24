@@ -26,8 +26,6 @@ const Input = styled.input<inputProps>`
   background-color: ${(props) => (props.isInvalid ? " #fddddd" : "#ffffff")};
   &:focus {
     outline: none;
-    border-color: ${(props) => (props.isInvalid ? "#ff8800" : "#ccc")};
-    background-color: ${(props) => (props.isInvalid ? "#fbe8d2" : "#ccc")};
   }
   @media (max-width: 992px) {
     width: 12rem;

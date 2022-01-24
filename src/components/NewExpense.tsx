@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import store from "../store/store";
 import { observer } from "mobx-react-lite";
 import ExpenseForm from "./ExpenseForm";
@@ -6,51 +6,42 @@ import ExpenseForm from "./ExpenseForm";
 const NewExpense: React.FC = () => {
   console.log("store", store);
 
-  const [enteredTitle, setEnteredTitle] = useState<string>("");
-  const [enteredAmount, setEnteredAmount] = useState<string>("");
-  const [isTitleTouched, setIsTitleTouched] = useState<boolean>(false);
-  const [isAmountTouched, setIsAmountTouched] = useState<boolean>(false);
-
   const enteredInputsValid: boolean =
-    enteredTitle.trim() !== "" && enteredAmount.trim() !== "";
+    store.newExpTitle.trim() !== "" && store.newExpAmount.trim() !== "";
   const enteredInputsInvalid: boolean =
-    !enteredInputsValid && isTitleTouched && isAmountTouched;
+    !enteredInputsValid &&
+    store.isTitleInputTouched &&
+    store.isAmountInputTouched;
 
   const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredTitle(event.target.value);
+    store.setNewExpTitle(event.target.value);
   };
   const amountChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredAmount(event.target.value);
+    store.setNewExpAmount(event.target.value);
   };
   const titleBlurHandler = () => {
-    setIsTitleTouched(true);
+    store.setIsTitleInputTouched(true);
   };
   const amountBlurHandler = () => {
-    setIsAmountTouched(true);
+    store.setIsAmountInputTouched(true);
   };
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    setIsTitleTouched(true);
-    setIsAmountTouched(true);
+    store.setIsTitleInputTouched(true);
+    store.setIsAmountInputTouched(true);
 
     if (!enteredInputsValid) return;
 
     //add to store
-    store.addExpense(enteredTitle, enteredAmount);
+    store.addExpense(store.newExpTitle, store.newExpAmount);
     //convert to euro
     store.convertToEuro();
-
-    //reset validation
-    setEnteredTitle("");
-    setEnteredAmount("");
-    setIsTitleTouched(false);
-    setIsAmountTouched(false);
   };
 
   return (
     <ExpenseForm
-      title={enteredTitle}
-      amount={enteredAmount}
+      title={store.newExpTitle}
+      amount={store.newExpAmount}
       inputsInvalid={enteredInputsInvalid}
       submitForm={submitHandler}
       titleChange={titleChangeHandler}
