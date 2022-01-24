@@ -6,13 +6,6 @@ import ExpenseForm from "./ExpenseForm";
 const NewExpense: React.FC = () => {
   console.log("store", store);
 
-  // const enteredInputsValid: boolean =
-  //   store.newExpTitle.trim() !== "" && store.newExpAmount.trim() !== "";
-  // const enteredInputsInvalid: boolean =
-  //   !enteredInputsValid &&
-  //   store.isTitleInputTouched &&
-  //   store.isAmountInputTouched;
-
   const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     store.setNewExpTitle(event.target.value);
   };
