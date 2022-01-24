@@ -19,7 +19,7 @@ const Table = styled.table`
     font-weight: 500;
     text-align: start;
   }
-  tbody tr:nth-child(even) {
+  tbody tr:nth-of-type(even) {
     background-color: rgba(151, 151, 151, 0.253);
   }
 `;
