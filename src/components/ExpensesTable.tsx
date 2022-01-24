@@ -22,6 +22,16 @@ const Table = styled.table`
   tbody tr:nth-of-type(even) {
     background-color: rgba(151, 151, 151, 0.253);
   }
+  @media (max-width: 992px) {
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 10px 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: start;
+    }
+  }
 `;
 const ExpensesTable: React.FC = () => {
   store.convertToEuro();

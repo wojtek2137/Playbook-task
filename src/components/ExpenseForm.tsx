@@ -11,6 +11,10 @@ const Label = styled.label`
   width: 200px;
   font-weight: 600;
   font-size: 1.2rem;
+  @media (max-width: 992px) {
+    width: 150px;
+    font-size: 1rem;
+  }
 `;
 const Input = styled.input<inputProps>`
   font: inherit;
@@ -24,6 +28,10 @@ const Input = styled.input<inputProps>`
     outline: none;
     border-color: ${(props) => (props.isInvalid ? "#ff8800" : "#ccc")};
     background-color: ${(props) => (props.isInvalid ? "#fbe8d2" : "#ccc")};
+  }
+  @media (max-width: 992px) {
+    width: 12rem;
+    padding: 0.2rem;
   }
 `;
 const Button = styled.button`
@@ -41,6 +49,11 @@ const Button = styled.button`
   &:active {
     background-color: #3c3b3d15;
     border-color: #3c3b3d15;
+  }
+  @media (max-width: 992px) {
+    font-size: medium;
+    padding: 0.1rem 1rem;
+    margin-left: 10px;
   }
 `;
 
@@ -70,7 +83,11 @@ const ExpenseForm: React.FC<{
             onBlur={props.titleBlur}
           />
         </div>
-        <div className={css({ marginTop: "20px" })}>
+        <div
+          className={css({
+            marginTop: "20px",
+          })}
+        >
           <Label htmlFor="amount">Amount (in PLN)</Label>
           <Input
             isInvalid={props.inputsInvalid}

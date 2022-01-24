@@ -8,6 +8,9 @@ import styled from "@emotion/styled";
 const ContainerWrapper = styled.section`
   margin: auto;
   padding: 10%;
+  @media (max-width: 992px) {
+    padding: 0;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -29,6 +32,16 @@ const HeaderWrapper = styled.div`
     margin-top: 40px;
     white-space: nowrap;
   }
+  @media (max-width: 992px) {
+    h1{
+    font-size:1.8em;
+  }
+  p {
+    
+    font-size: 1em;
+    margin-right: 2%;
+  }
+  
 `;
 
 const H4 = styled.h4`
@@ -37,9 +50,10 @@ const H4 = styled.h4`
 `;
 const ConversionWrapper = styled.div`
   label {
+    display: inline-block;
     font-weight: 600;
     font-size: 1.2rem;
-    margin-right: 0.5rem;
+    width: 150px;
   }
   input {
     font: inherit;
