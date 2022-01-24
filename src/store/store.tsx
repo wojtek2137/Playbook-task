@@ -15,11 +15,21 @@ class Store {
   //validation for inputs
   isTitleInputTouched: boolean = false;
   isAmountInputTouched: boolean = false;
-
+  // nputInvalid: boolean = false;
   constructor() {
     makeAutoObservable(this);
   }
 
+  get inputsInvalid(): boolean {
+    const enteredInputsValid: boolean =
+      this.newExpTitle.trim() !== "" && this.newExpAmount.trim() !== "";
+    const enteredInputsInvalid: boolean =
+      !enteredInputsValid &&
+      this.isTitleInputTouched &&
+      this.isAmountInputTouched;
+
+    return enteredInputsInvalid;
+  }
   get totalPLN(): number {
     let sum = 0;
     for (const record of this.expenses) {

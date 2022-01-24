@@ -6,12 +6,12 @@ import ExpenseForm from "./ExpenseForm";
 const NewExpense: React.FC = () => {
   console.log("store", store);
 
-  const enteredInputsValid: boolean =
-    store.newExpTitle.trim() !== "" && store.newExpAmount.trim() !== "";
-  const enteredInputsInvalid: boolean =
-    !enteredInputsValid &&
-    store.isTitleInputTouched &&
-    store.isAmountInputTouched;
+  // const enteredInputsValid: boolean =
+  //   store.newExpTitle.trim() !== "" && store.newExpAmount.trim() !== "";
+  // const enteredInputsInvalid: boolean =
+  //   !enteredInputsValid &&
+  //   store.isTitleInputTouched &&
+  //   store.isAmountInputTouched;
 
   const titleChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     store.setNewExpTitle(event.target.value);
@@ -30,7 +30,7 @@ const NewExpense: React.FC = () => {
     store.setIsTitleInputTouched(true);
     store.setIsAmountInputTouched(true);
 
-    if (!enteredInputsValid) return;
+    if (store.inputsInvalid) return;
 
     //add to store
     store.addExpense(store.newExpTitle, store.newExpAmount);
@@ -42,7 +42,7 @@ const NewExpense: React.FC = () => {
     <ExpenseForm
       title={store.newExpTitle}
       amount={store.newExpAmount}
-      inputsInvalid={enteredInputsInvalid}
+      inputsInvalid={store.inputsInvalid}
       submitForm={submitHandler}
       titleChange={titleChangeHandler}
       amountChange={amountChangeHandler}
